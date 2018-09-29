@@ -1,43 +1,16 @@
+DIR_INC = ../inc
+DIR_BIN = ../bin
+DIR_OBJ = ../obj
+
 CC = g++
-FLAGS = -Wall
-BIN = ../bin
-SRC = ../src
-INC = ../inc
-OBJ = ../obj
-SOURCE = $(wildcard $(SRC)/*.cc)
-PROGS = $(patsubst %.cc, $(BIN)/%, $(notdir $(SOURCE)))
-all: $(PROGS)
-$(BIN)/%: $(SRC)/%.cc
-	$(CC) $(FLAGS) $< -o $@ 
-#$(BIN):
-#	mkdir -p $@
-#$(FOO_LIB): $(LIB)/foo.c | $(OBJ)
-#	gcc -c $< -o $@
-#$(OBJ):
-#	mkdir -p $(OBJ)
+CXXFLAGS = -std=c++11 -I$(DIR_INC)
 
+#target = test1
 
+$(target): $(DIR_BIN)/$(target)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$(DIR_BIN)/$(target): main.o
+	g++ main.o -o $(target)
+main.o: main.cc $(target).cc
+	g++ -o main.o -c main.cc $(target).cc 
 
