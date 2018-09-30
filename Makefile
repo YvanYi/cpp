@@ -13,9 +13,11 @@ all: $(BINS)
 
 $(DIR_BIN)/%: $(DIR_OBJ)/%.o
 	$(CXX) $< -o $@
+
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-
+# By -o renaming the object files, we can add direction info to it.
+# Otherwise, object files cannot be moved to corresponding direction.
 .PHONY : clean
 clean : 
 	rm -rf $(DIR_OBJ)/*
