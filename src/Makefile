@@ -1,16 +1,15 @@
-DIR_INC = ../inc
 DIR_BIN = ../bin
-DIR_OBJ = ../obj
+DIR_INC = ../inc
+DIR_SRC = .
 
-CC = g++
+CXX = g++
 CXXFLAGS = -std=c++11 -I$(DIR_INC)
 
-#target = test1
+sources = main.cc test.cc
+incs    = test.h
+target  = $(DIR_BIN)/test
 
-$(target): $(DIR_BIN)/$(target)
+incs_full = $(patsubst %, $(DIR_INC)/%, $(incs))
 
-$(DIR_BIN)/$(target): main.o
-	g++ main.o -o $(target)
-main.o: main.cc $(target).cc
-	g++ -o main.o -c main.cc $(target).cc 
-
+$(target):$(sources) $(incs_full)
+	$(CXX) $(CXXFLAGS) $(sources) -o $@
