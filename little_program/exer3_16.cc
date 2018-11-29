@@ -19,7 +19,6 @@ int main()
     vector<string> v6{10};
     vector<string> v7{10, "hi"};
     cout << "Here comes the result: " << endl;
-    cout << endl;
 
     cout << "The size is " << v1.size() << endl;
     cout << "The content is: " << endl;
